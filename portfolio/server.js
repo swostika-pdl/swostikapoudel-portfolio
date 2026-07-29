@@ -1,5 +1,4 @@
 
-// perplexity
 async function sendForm(type) {
   const configs = {
     message: {
