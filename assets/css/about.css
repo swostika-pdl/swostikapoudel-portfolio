@@ -1,0 +1,93 @@
+/* Extra typography used inside the About section (loaded AFTER main.css) */
+.sec-title{
+    font-family: 'Syne', monospace;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 3px;
+}
+.about-body{
+    font-family: 'Inter',monospace;
+    font-size: 3rem;
+    line-height: 1.7;
+    color: #b8c5d6;
+    text-align: justify;
+    max-width: 500px;
+}
+.about-body h5{
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #00ff88;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Remove rectangular photo background/frame */
+.photo-frame {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 !important;
+}
+
+/* Keep profile image circular */
+.photo-frame img {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 2px solid var(#ba028b);
+    box-shadow: 0 0 25px rgba(249, 255, 249, 0.967);
+}
+
+
+.sec-label{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00ff88;
+}
+
+/* ===== ABOUT ===== */
+#about{padding:8rem 0;}
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-body{color:var(--txt2);font-size:0.97rem;line-height:1.9;margin-bottom:1.25rem;}
+.about-quote{
+  font-family:var(--mono);font-size:13px;color:var(--g);
+  border-left:2px solid var(--g);padding:1rem 1.25rem;margin:2rem 0;
+  background:var(--g-dim);border-radius:0 6px 6px 0;font-style:italic;line-height:1.7;
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem;}
+.chip{
+  font-family:var(--mono);font-size:11px;color:var(--txt2);background:var(--bg3);
+  border:1px solid rgba(255,255,255,0.07);padding:5px 13px;border-radius:3px;
+}
+
+/* Terminal (whoami block) */
+.terminal{
+  background:var(--card);border:1px solid var(--g-border);border-radius:12px;overflow:hidden;
+  font-family:var(--mono);font-size:13px;box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.term-bar{
+  background:rgba(255,255,255,0.04);border-bottom:1px solid var(--g-border);
+  padding:10px 16px;display:flex;align-items:center;gap:8px;
+}
+.tdot{width:10px;height:10px;border-radius:50%;}
+.td-r{background:#ff5f57;}.td-y{background:#ffbd2e;}.td-g{background:var(--g);}
+.term-title{font-size:11px;color:var(--txt3);margin-left:6px;letter-spacing:0.06em;}
+.term-body{padding:1.5rem;line-height:2.1;}
+.tl{display:flex;gap:8px;}
+.tprompt{color:var(--g);}
+.tcmd{color:var(--white);}
+.tout{margin-left:1.25rem;display:flex;flex-direction:column;margin-bottom:0.5rem;color:var(--txt2);}
+.tv{color:var(--cyan);}
+.tc{color:var(--txt3);}
+.tkey{color:var(--purple);}
+
+@media(max-width:1000px){
+  .about-wrap{grid-template-columns:1fr;gap:3rem;}
+}
