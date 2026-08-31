@@ -1,13 +1,13 @@
 /* Extra typography used inside the About section (loaded AFTER main.css) */
 .sec-title{
-    font-family: 'Syne', monospace;
+    font-family: 'Syne', sans-serif;
     font-size: 2rem;
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: 3px;
 }
 .about-body{
-    font-family: 'Inter',monospace;
+    font-family: 'Inter',sans-serif;
     font-size: 3rem;
     line-height: 1.7;
     color: #b8c5d6;
@@ -16,9 +16,9 @@
 }
 .about-body h5{
     font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: #00ff88;
+    color: #5042b9;
     margin-bottom: 12px;
     letter-spacing: 0.5px;
 }
@@ -45,7 +45,7 @@
 
 
 .sec-label{
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', sans-serif;
     font-size: 0.85rem;
     letter-spacing: 2px;
     text-transform: uppercase;
