@@ -17,7 +17,7 @@
   setInterval(()=>{
     ctx.fillStyle = 'rgba(4,7,15,0.05)';
     ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = '#00ff9d';
+    ctx.fillStyle = '#ff0044';
     ctx.font = '13px JetBrains Mono, monospace';
     for(let i=0;i<drops.length;i++){
       const c = chars[Math.floor(Math.random()*chars.length)];
