@@ -50,20 +50,36 @@ body{
   cursor:none;
 }
 
-/* Custom cursor */
-#cursor{
-  position:fixed;width:12px;height:12px;
-  background:var(--g);border-radius:50%;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:transform 0.1s;mix-blend-mode:screen;
+#cursor {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background: #7b79d4;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  box-shadow:
+    0 0 8px #ff00a6,
+    0 0 18px rgba(255, 0, 187, 0.9);
 }
-#cursor-ring{
-  position:fixed;width:36px;height:36px;
-  border:1px solid rgba(8, 21, 17, 0.4);
-  border-radius:50%;pointer-events:none;z-index:9998;
-  transform:translate(-50%,-50%);transition:all 0.12s ease;
+
+#cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(19, 40, 228, 0.85);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+  box-shadow:
+    0 0 10px rgba(186, 13, 142, 0.5),
+    0 0 20px rgba(21, 0, 255, 0.25);
 }
+
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:3px;}

@@ -37,7 +37,7 @@ document.addEventListener('mousemove', e=>{
   setTimeout(()=>{
     ring.style.left = e.clientX+'px';
     ring.style.top = e.clientY+'px';
-  }, 90);
+  }, 100);
 });
 document.querySelectorAll('a,button,.proj-card,.skill-card,.cert-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{
@@ -46,9 +46,9 @@ document.querySelectorAll('a,button,.proj-card,.skill-card,.cert-card').forEach(
     ring.style.borderColor='var(--g)';
   });
   el.addEventListener('mouseleave',()=>{
-    cur.style.transform='translate(-50%,-50%) scale(1)';
-    ring.style.transform='translate(-50%,-50%) scale(1)';
-    ring.style.borderColor='rgba(0,255,157,0.4)';
+    cur.style.transform='translate(-110%,-50%) scale(1)';
+    ring.style.transform='translate(-110%,-50%) scale(1)';
+    ring.style.borderColor='rgba(166, 0, 255, 0.4)';
   });
 });
 
