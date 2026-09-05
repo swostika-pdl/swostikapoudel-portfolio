@@ -102,66 +102,184 @@ function updateCount(el, countId){
 
 // ===== CONTACT FORM LOGIC =====
 async function sendForm(type) {
+
   const configs = {
-    message: { name: 'msg-name', email: 'msg-email', subject: 'msg-subject', body: 'msg-body', btn: 'msg-btn-text', feedback: 'msg-feedback' },
-    collab: { name: 'col-name', email: 'col-email', subject: 'col-type', body: 'col-body', btn: 'col-btn-text', feedback: 'col-feedback' },
-    ctf: { name: 'ctf-name', email: 'ctf-email', subject: 'ctf-event', body: 'ctf-body', btn: 'ctf-btn-text', feedback: 'ctf-feedback' }
+    message: {
+      name: 'msg-name',
+      email: 'msg-email',
+      subject: 'msg-subject',
+      body: 'msg-body',
+      btn: 'msg-btn-text',
+      feedback: 'msg-feedback'
+    },
+
+    collab: {
+      name: 'col-name',
+      email: 'col-email',
+      subject: 'col-type',
+      body: 'col-body',
+      btn: 'col-btn-text',
+      feedback: 'col-feedback'
+    },
+
+    ctf: {
+      name: 'ctf-name',
+      email: 'ctf-email',
+      subject: 'ctf-event',
+      body: 'ctf-body',
+      btn: 'ctf-btn-text',
+      feedback: 'ctf-feedback'
+    }
   };
 
   const c = configs[type];
+
   const name = document.getElementById(c.name).value.trim();
   const email = document.getElementById(c.email).value.trim();
-  const subject = document.getElementById(c.subject).value;
+  const subject = document.getElementById(c.subject).value.trim();
   const message = document.getElementById(c.body).value.trim();
+
   const fbEl = document.getElementById(c.feedback);
   const btnEl = document.getElementById(c.btn);
 
+  // Hide previous feedback
   fbEl.style.display = 'none';
 
+  // ===== VALIDATION =====
   if (!name || !email || !message) {
     fbEl.className = 'form-msg error';
-    fbEl.textContent = ' error: name, email, and message are required.';
+    fbEl.textContent = '// error: name, email, and message are required.';
     fbEl.style.display = 'block';
     return;
   }
 
-  const CONTACT_EMAIL = 'swostika6789@gmail.com';
-  const mailSubject = encodeURIComponent(`[${type.toUpperCase()}] ${subject}`);
-  const mailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+  // Check email format
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  fbEl.className = 'form-msg success';
-  fbEl.textContent = '// opening your email app... hit send to deliver the message.';
-  fbEl.style.display = 'block';
+  if (!emailPattern.test(email)) {
+    fbEl.className = 'form-msg error';
+    fbEl.textContent = '// error: please enter a valid email address.';
+    fbEl.style.display = 'block';
+    return;
+  }
 
-  setTimeout(() => {
-    document.getElementById(c.name).value = '';
-    document.getElementById(c.email).value = '';
-    document.getElementById(c.body).value = '';
-    fbEl.style.display = 'none';
-  }, 5000);
+  // ===== SENDING =====
+  btnEl.textContent = 'SENDING...';
+
+  try {
+
+    const response = await fetch('https://formspree.io/f/myeypaak', {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        subject: subject || `[${type.toUpperCase()}] Portfolio Contact`,
+        message: message
+      })
+    });
+
+    // ===== SUCCESS =====
+    if (response.ok) {
+
+      fbEl.className = 'form-msg success';
+      fbEl.textContent = '// message sent successfully!';
+      fbEl.style.display = 'block';
+
+      // Clear form
+      document.getElementById(c.name).value = '';
+      document.getElementById(c.email).value = '';
+      document.getElementById(c.body).value = '';
+
+      // Reset button
+      btnEl.textContent = 'SEND MESSAGE';
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        fbEl.style.display = 'none';
+      }, 5000);
+
+    } 
+    
+    // ===== FORM ERROR =====
+    else {
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch (e) {
+        data = {};
+      }
+
+      fbEl.className = 'form-msg error';
+      fbEl.textContent =
+        '// error: ' + (data.error || 'message could not be sent.');
+
+      fbEl.style.display = 'block';
+
+      btnEl.textContent = 'SEND MESSAGE';
+    }
+
+  } 
+  
+  // ===== NETWORK ERROR =====
+  catch (error) {
+
+    fbEl.className = 'form-msg error';
+    fbEl.textContent =
+      '// error: unable to send message. Please try again.';
+
+    fbEl.style.display = 'block';
+
+    btnEl.textContent = 'SEND MESSAGE';
+  }
 }
+
 
 // ===== FOOTER TIME =====
 function updateTime() {
   const now = new Date();
+
   document.getElementById('footer-time').textContent =
     now.toLocaleString('en-US', {
-      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit'
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
     });
 }
+
 updateTime();
 setInterval(updateTime, 1000);
 
+
 // ===== ACTIVE NAV =====
 const sections = document.querySelectorAll('section[id]');
+
 window.addEventListener('scroll', () => {
+
   let cur = '';
+
   sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) { cur = s.id; }
+    if (window.scrollY >= s.offsetTop - 120) {
+      cur = s.id;
+    }
   });
+
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--g)' : '';
+    a.style.color =
+      a.getAttribute('href') === '#' + cur
+        ? 'var(--g)'
+        : '';
   });
+
 });
